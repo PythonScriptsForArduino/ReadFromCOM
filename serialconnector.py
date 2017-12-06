@@ -32,7 +32,7 @@ print ("\n")
 print("connected to: " , ser.portstr)
 
 #add headers to the csv file
-header = ["Time", "Data"]
+header = ["Time", "Data"] #add more headers as required e.g. ["Time","Data","Voltage","Temperature","Other"]
 with open(r'output.csv', 'a') as f:
                 writer = csv.writer(f)
                 writer.writerow(header)
@@ -48,15 +48,23 @@ while True:
     for c in ser.read():
         seq.append(c)
         joined_seq = ''.join(str(v) for v in seq) #Make a string from array
+        newList = joined_seq.split(",")
+        
         if c == '\n':
             
             #print incomind data and write csv
             #print("Line " + str(count) + ': ' + joined_seq)
             with open(r'output.csv', 'a') as f:
-                writer = csv.writer(f)
+                writer = csv.writer(f, delimiter=',')
                 row.append(datetime.datetime.now().strftime("%H:%M:%S"))
-                row.append(joined_seq.strip())
-                #print row
+                row.append(newList[0].strip())
+                row.append(newList[1].strip())
+                #add as many items as you have data in one line from the arduino
+                #row.append(newList[2].strip())
+                #row.append(newList[3].strip())
+                #row.append(newList[4].strip())
+                #row.append(newList[5].strip())
+                #row.append(newList[6].strip())
                 writer.writerow(row)
         
             seq = []
