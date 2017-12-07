@@ -1,6 +1,8 @@
 # ReadFromCOM
 
-Ensure to run "!pip install pyserial"  in the console if working with windows  
+Ensure to run "!pip install pyserial"  in the console if working with windows anaconda IDE using python 2.7
+
+https://www.anaconda.com/download/
 
 Ensure the that the arduino prints its data like this for example  
 
